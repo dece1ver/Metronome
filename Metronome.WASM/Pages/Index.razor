@@ -1,0 +1,100 @@
+﻿@page "/"
+@using Howler.Blazor.Components
+@using _Imports = Metronome.WASM._Imports
+@inject IHowl Howl
+@inject IHowlGlobal HowlGlobal
+
+<MudContainer Class="mt-16" MaxWidth="MaxWidth.ExtraSmall">
+    <MudGrid Class="mt-8">
+        <MudItem>
+            <MudCard Elevation="25" Class="rounded-lg pb-4">
+                <MudCardContent>
+                    <div class="d-flex justify-center">
+                        <MudTextField T="int" @bind-Value="Tempo" 
+                                      Label="Темп"
+                                      Variant="Variant.Filled"
+                                      Adornment="Adornment.End"
+                                      AdornmentText="уд/мин" 
+                                      Immediate="true"/>
+                    </div>
+                    <MudSlider Class="mt-8" T="int" @bind-Value="Tempo" Min="40" Max="300"/>
+                </MudCardContent>
+                <MudCardActions Class="d-flex justify-center">
+                    <MudToggleIconButton @bind-Toggled="@Running" Size="Size.Large" ToggledSize="Size.Large"
+                                         Icon="@Icons.Filled.PlayCircleOutline" Color="@Color.Success"
+                                         ToggledIcon="@Icons.Filled.StopCircle" ToggledColor="@Color.Error"/>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+        
+        
+    </MudGrid>
+</MudContainer>
+@code
+{
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            var codecs = await HowlGlobal.GetCodecs();
+
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Howl.OnPlay += e =>
+        {
+            StateHasChanged();
+        };
+
+        Howl.OnStop += e =>
+        {
+            StateHasChanged();
+        };
+
+        Howl.OnPause += e =>
+        {
+            StateHasChanged();
+        };
+
+        Howl.OnRate += e =>
+        {
+            StateHasChanged();
+        };
+
+        Howl.OnPlayError += e =>
+        {
+            StateHasChanged();
+        };
+
+        Howl.OnLoadError += e =>
+        {
+            StateHasChanged();
+        };
+
+        _ = PlayLocal();
+    }
+
+    protected async Task PlayLocal()
+    {
+        while (Running)
+        {
+            SoundIds.Add(await Howl.Play("resources/1.mp3"));
+            await Task.Delay(Tempo);
+        }
+    }
+
+
+    public bool Running { get; set; }
+    public int Tempo { get; set; } = 120;
+    public List<int> SoundIds = new List<int>();
+
+
+}
+
