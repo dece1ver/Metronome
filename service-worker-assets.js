@@ -5,6 +5,10 @@
       "url": "favicon.ico"
     },
     {
+      "hash": "sha256-dxn1AGT2nVNGE+Y32rkW4a6VjUevYeDo3o4pJAQNffM=",
+      "url": "icon-192.png"
+    },
+    {
       "hash": "sha256-Fuw1DdekEEva67Dju3Ql8WjSiWLe1FwNZw8BANqb0CM=",
       "url": "icon-512.png"
     },
@@ -15,6 +19,10 @@
     {
       "hash": "sha256-5IZBB1SCo9rmya20WgpJU6wvZLQ+zcOVj0zinLRUDY0=",
       "url": "manifest.json"
+    },
+    {
+      "hash": "sha256-r2IELQKVgGJx0MO\/VniQcUSLQa1QOJzTJinBUCgG2lI=",
+      "url": "resources\/1.mp3"
     },
     {
       "hash": "sha256-wC+zAyYHVTNzevCw3SFvHI4jG51pV1+b5sQ3Rj11QGI=",
@@ -261,5 +269,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "VwMxFYI0"
+  "version": "nRMq4y7D"
 };
