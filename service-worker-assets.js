@@ -1,11 +1,11 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-FHAQv5tCX8yHcGkL\/8AFhL0PtUWgEoaN6XjY+hoCblo=",
+      "hash": "sha256-qtLLSH77tuGJQF3Qg82oMjgFE0HUQtPAt5a6gMYGyRU=",
       "url": "favicon.ico"
     },
     {
-      "hash": "sha256-r76pcMtyyaXewSEqDzqV64kkjsYdDUiWLB79Ai2DKHw=",
+      "hash": "sha256-Fuw1DdekEEva67Dju3Ql8WjSiWLe1FwNZw8BANqb0CM=",
       "url": "icon-512.png"
     },
     {
@@ -15,10 +15,6 @@
     {
       "hash": "sha256-5IZBB1SCo9rmya20WgpJU6wvZLQ+zcOVj0zinLRUDY0=",
       "url": "manifest.json"
-    },
-    {
-      "hash": "sha256-4Yh4OTT5TEAPNyXEzOG+n5l2HPK294WFItz4SIelj88=",
-      "url": "sample-data\/weather.json"
     },
     {
       "hash": "sha256-wC+zAyYHVTNzevCw3SFvHI4jG51pV1+b5sQ3Rj11QGI=",
@@ -265,5 +261,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "lEksYnkF"
+  "version": "VwMxFYI0"
 };
