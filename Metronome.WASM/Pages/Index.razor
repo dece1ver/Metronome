@@ -4,85 +4,61 @@
 @inject IHowl Howl
 @inject IHowlGlobal HowlGlobal
 
-<MudContainer Class="mt-16" MaxWidth="MaxWidth.ExtraSmall">
-    <MudGrid Class="mt-8">
-        <MudItem>
-            <MudCard Elevation="25" Class="rounded-lg pb-4">
-                <MudCardContent>
-                    <div class="d-flex justify-center">
-                        <MudTextField T="int" @bind-Value="Tempo" 
-                                      Label="Темп"
-                                      Variant="Variant.Filled"
-                                      Adornment="Adornment.End"
-                                      AdornmentText="уд/мин" 
-                                      Immediate="true"/>
-                    </div>
-                    <MudSlider Class="mt-8" T="int" @bind-Value="Tempo" Min="40" Max="300"/>
-                </MudCardContent>
-                <MudCardActions Class="d-flex justify-center">
-                    <MudToggleIconButton @bind-Toggled="@Running" @onclick="PlayLocal" Size="Size.Large" ToggledSize="Size.Large"
-                                         Icon="@Icons.Filled.PlayCircleOutline" Color="@Color.Success"
-                                         ToggledIcon="@Icons.Filled.StopCircle" ToggledColor="@Color.Error"/>
-                </MudCardActions>
-            </MudCard>
+<MudContainer Class="mt-2">
+    <MudGrid Spacing="2">
+        <MudItem xs="12" md="6">
+            <MudPaper Class="pa-4">
+                <MudItem xs="12">
+                    <MudTextField T="int" @bind-Value="Tempo"
+                                  Label="Темп"
+                                  Variant="Variant.Filled"
+                                  Adornment="Adornment.End"
+                                  AdornmentText="уд/мин" 
+                                  Immediate="true"/>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudSlider Class="mt-4" Size="Size.Large" T="int" @bind-Value="Tempo" Min="40" Max="300"/>
+                </MudItem>
+                <MudItem xs="12" Class="d-flex justify-space-between flex-grow-1 gap-4">
+                    <MudIconButton/>
+                    <MudToggleIconButton  
+                        @bind-Toggled="@Running" 
+                        @onclick="PlayLocal" 
+                        Size="Size.Large" 
+                        ToggledSize="Size.Large"
+                        Icon="@Icons.Filled.PlayCircleOutline" Color="@Color.Success"
+                        ToggledIcon="@Icons.Filled.StopCircle" ToggledColor="@Color.Error"/>
+                    <MudIconButton OnClick="(() => SavedTempos.Add(new TempoInfo(Tempo, string.Empty)))"
+                        Size="Size.Large" Icon="@Icons.Filled.Save"/>
+                </MudItem>
+            </MudPaper>
         </MudItem>
-        
-        
+        <MudItem xs="12" md="6">
+            @foreach (var tempo in SavedTempos)
+            {
+                <MudPaper>
+                    <MudGrid Spacing="1" Class="ml-2">
+                        <div  class="d-flex flex-grow-1 gap-1 mt-1 mr-1">
+                            <MudNumericField @bind-Value=tempo.Tempo Label="Темп" Variant="Variant.Filled" Margin="Margin.Dense" DisableUnderLine="true"
+                                             Style="width: 102px; margin-top: 2px;"/>
+                            <MudTextField @bind-Value=tempo.Name Label="Название" Variant="Variant.Filled" Margin="Margin.Dense" DisableUnderLine="true"
+                                          Style="margin-top: 2px;" FullWidth="true"/>
+                        </div>
+                        <MudItem Class="py-3 mr-5">
+                            <MudButtonGroup Variant="Variant.Outlined" DisableElevation="true" Size="Size.Large">
+                                <MudIconButton Icon="@Icons.TwoTone.Input" OnClick="(()=> Tempo = tempo.Tempo)"/>
+                                <MudIconButton Icon="@Icons.TwoTone.RemoveCircleOutline" OnClick="(() => SavedTempos.Remove(tempo))"/>
+                            </MudButtonGroup>
+                        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+            }
+        </MudItem>
     </MudGrid>
 </MudContainer>
+
 @code
 {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-        if (firstRender)
-        {
-            var codecs = await HowlGlobal.GetCodecs();
-
-            StateHasChanged();
-        }
-
-        
-    }
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        Howl.OnPlay += e =>
-        {
-            StateHasChanged();
-        };
-
-        Howl.OnStop += e =>
-        {
-            StateHasChanged();
-        };
-
-        Howl.OnPause += e =>
-        {
-            StateHasChanged();
-        };
-
-        Howl.OnRate += e =>
-        {
-            StateHasChanged();
-        };
-
-        Howl.OnPlayError += e =>
-        {
-            StateHasChanged();
-        };
-
-        Howl.OnLoadError += e =>
-        {
-            StateHasChanged();
-        };
-
-        //PlayLocal();
-    }
-
     protected async Task PlayLocal()
     {
         Running = !Running;
@@ -98,7 +74,6 @@
     public bool Running { get; set; }
     public int Tempo { get; set; } = 120;
     public List<int> SoundIds = new List<int>();
-
-
+    public List<TempoInfo> SavedTempos { get; set; } = new();
 }
 
