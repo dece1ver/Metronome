@@ -1,6 +1,6 @@
 {
-  "name": "Metronome.WASM",
-  "short_name": "Metronome.WASM",
+  "name": "Metronome",
+  "short_name": "Metronome",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
