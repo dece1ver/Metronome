@@ -8,7 +8,7 @@
   "resources": {
     "assembly": {
       "Howler.Blazor.dll": "sha256-Bn5QI5DFxNPUgcNXAfRKqJnsTFGl2cSZte9Xf9G+d7A=",
-      "Metronome.WASM.dll": "sha256-yKPTFmdtMVdWncXlEolFsuTnNik0rIDsczWESW8Ygto=",
+      "Metronome.WASM.dll": "sha256-f97mWa+4a3jxcduK\/VNhrFwS1t4l+rIyFlJYydfQPUY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-NSKAnk1AlqE5H5mnWmil80QpftFgJgKduWh5uL3L6oE=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-Ki9125n8XZcuhgJMQXGb2aSq7AmNrqFm\/crA97fN2Wo=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-3S2cOy47eIGDBXIEcYye1Y49NWKkI5xD3eyDuPVbgm8=",
