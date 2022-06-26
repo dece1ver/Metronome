@@ -20,7 +20,7 @@
                     <MudSlider Class="mt-8" T="int" @bind-Value="Tempo" Min="40" Max="300"/>
                 </MudCardContent>
                 <MudCardActions Class="d-flex justify-center">
-                    <MudToggleIconButton @bind-Toggled="@Running" Size="Size.Large" ToggledSize="Size.Large"
+                    <MudToggleIconButton @bind-Toggled="@Running" @onclick="PlayLocal" Size="Size.Large" ToggledSize="Size.Large"
                                          Icon="@Icons.Filled.PlayCircleOutline" Color="@Color.Success"
                                          ToggledIcon="@Icons.Filled.StopCircle" ToggledColor="@Color.Error"/>
                 </MudCardActions>
@@ -42,6 +42,8 @@
 
             StateHasChanged();
         }
+
+        
     }
 
     protected override void OnInitialized()
@@ -78,15 +80,17 @@
             StateHasChanged();
         };
 
-        _ = PlayLocal();
+        //PlayLocal();
     }
 
     protected async Task PlayLocal()
     {
+        Running = !Running;
         while (Running)
         {
+            var delay = 60 / (double)Tempo * 1000;
             SoundIds.Add(await Howl.Play("resources/1.mp3"));
-            await Task.Delay(Tempo);
+            await Task.Delay(Convert.ToInt32(delay));
         }
     }
 
