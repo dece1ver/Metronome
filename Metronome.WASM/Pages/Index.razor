@@ -7,21 +7,23 @@
 <MudContainer Class="mt-2">
     <MudGrid Spacing="2">
         <MudItem xs="12" md="6">
-            <MudPaper Class="pa-4">
+            <MudPaper Class="px-4 pt-1 mb-n2">
                 <MudItem xs="12">
                     <MudTextField T="int" @bind-Value="Tempo"
                                   Label="Темп"
                                   Variant="Variant.Filled"
                                   Adornment="Adornment.End"
                                   AdornmentText="уд/мин" 
-                                  Immediate="true"/>
+                                  Immediate="true"
+                                  Style="margin-top: -1px;"
+                                  DisableUnderLine="true"/>
                 </MudItem>
                 <MudItem xs="12">
-                    <MudSlider Class="mt-4" Size="Size.Large" T="int" @bind-Value="Tempo" Min="40" Max="300"/>
+                    <MudSlider Class="mt-4" Size="Size.Large" T="int" @bind-Value="Tempo" Min="40" Max="300" Style="margin-bottom: 8px;"/>
                 </MudItem>
                 <MudItem xs="12" Class="d-flex justify-space-between flex-grow-1 gap-4">
-                    <MudIconButton/>
-                    <MudToggleIconButton  
+                    <MudIconButton Class="mb-2"/>
+                    <MudToggleIconButton Class="mb-2"
                         @bind-Toggled="@Running" 
                         @onclick="PlayLocal" 
                         Size="Size.Large" 
@@ -29,22 +31,24 @@
                         Icon="@Icons.Filled.PlayCircleOutline" Color="@Color.Success"
                         ToggledIcon="@Icons.Filled.StopCircle" ToggledColor="@Color.Error"/>
                     <MudIconButton OnClick="(() => SavedTempos.Add(new TempoInfo(Tempo, string.Empty)))"
-                        Size="Size.Large" Icon="@Icons.Filled.Save"/>
+                        Size="Size.Large" Icon="@Icons.Filled.Save" Class="mb-2" />
                 </MudItem>
             </MudPaper>
         </MudItem>
         <MudItem xs="12" md="6">
             @foreach (var tempo in SavedTempos)
             {
-                <MudPaper>
-                    <MudGrid Spacing="1" Class="ml-2">
-                        <div  class="d-flex flex-grow-1 gap-1 mt-1 mr-1">
+                <MudPaper Class="px-2 mt-0">
+                    <MudGrid Spacing="1" Justify="Justify.SpaceBetween">
+                        <MudItem>
                             <MudNumericField @bind-Value=tempo.Tempo Label="Темп" Variant="Variant.Filled" Margin="Margin.Dense" DisableUnderLine="true"
                                              Style="width: 102px; margin-top: 2px;"/>
+                        </MudItem>
+                        <MudItem>
                             <MudTextField @bind-Value=tempo.Name Label="Название" Variant="Variant.Filled" Margin="Margin.Dense" DisableUnderLine="true"
                                           Style="margin-top: 2px;" FullWidth="true"/>
-                        </div>
-                        <MudItem Class="py-3 mr-5">
+                        </MudItem>
+                        <MudItem Class="py-3">
                             <MudButtonGroup Variant="Variant.Outlined" DisableElevation="true" Size="Size.Large">
                                 <MudIconButton Icon="@Icons.TwoTone.Input" OnClick="(()=> Tempo = tempo.Tempo)"/>
                                 <MudIconButton Icon="@Icons.TwoTone.RemoveCircleOutline" OnClick="(() => SavedTempos.Remove(tempo))"/>
@@ -64,9 +68,8 @@
         Running = !Running;
         while (Running)
         {
-            var delay = 60 / (double)Tempo * 1000;
             SoundIds.Add(await Howl.Play("resources/1.mp3"));
-            await Task.Delay(Convert.ToInt32(delay));
+            await Task.Delay(Convert.ToInt32(60 / (double)Tempo * 1000));
         }
     }
 
