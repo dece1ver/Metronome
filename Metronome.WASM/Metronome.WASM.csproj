@@ -14,6 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
 		<PackageReference Include="Howler.Blazor" Version="0.9.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.6" PrivateAssets="all" />

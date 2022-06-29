@@ -3,6 +3,7 @@
 @using _Imports = Metronome.WASM._Imports
 @inject IHowl Howl
 @inject IHowlGlobal HowlGlobal
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <MudContainer Class="mt-2">
     <MudGrid Spacing="2">
@@ -14,7 +15,7 @@
                                   Variant="Variant.Filled"
                                   Adornment="Adornment.End"
                                   AdornmentText="уд/мин" 
-                                  Immediate="true"
+                                  DebounceInterval="500" 
                                   Style="margin-top: -1px;"
                                   DisableUnderLine="true"/>
                 </MudItem>
@@ -38,7 +39,7 @@
         <MudItem xs="12" md="6">
             @foreach (var tempo in SavedTempos)
             {
-                <MudPaper Class="px-2 mt-0">
+                <MudPaper Class="px-2 mt-1">
                     <MudGrid Spacing="1" Justify="Justify.SpaceBetween">
                         <MudItem>
                             <MudNumericField @bind-Value=tempo.Tempo Label="Темп" Variant="Variant.Filled" Margin="Margin.Dense" DisableUnderLine="true"
@@ -63,12 +64,18 @@
 
 @code
 {
+    protected override async Task OnInitializedAsync()
+    {
+        SavedTempos = await localStorage.GetItemAsync<List<TempoInfo>>(nameof(SavedTempos)) ?? new List<TempoInfo>();
+    }
+
     protected async Task PlayLocal()
     {
         Running = !Running;
         while (Running)
         {
             SoundIds.Add(await Howl.Play("resources/1.mp3"));
+            await localStorage.SetItemAsync(nameof(SavedTempos), SavedTempos);
             await Task.Delay(Convert.ToInt32(60 / (double)Tempo * 1000));
         }
     }
@@ -76,7 +83,7 @@
 
     public bool Running { get; set; }
     public int Tempo { get; set; } = 120;
-    public List<int> SoundIds = new List<int>();
+    public List<int> SoundIds = new();
     public List<TempoInfo> SavedTempos { get; set; } = new();
 }
 
