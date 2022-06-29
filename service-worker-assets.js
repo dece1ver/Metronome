@@ -57,15 +57,19 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-EUkr6d+MEn39VLuBlYSQYhkXytRW8kzEY4b3PzX03Cc=",
+      "hash": "sha256-Uss0qhQU71pmM2mo6\/yL2g7jmweodx5fNtoQ9h7xr9w=",
       "url": "_framework\/blazor.boot.json"
+    },
+    {
+      "hash": "sha256-6RRoYeDP3d0xabXmcCMF66wXeJlXVPem28Trs8sQiis=",
+      "url": "_framework\/Blazored.LocalStorage.dll"
     },
     {
       "hash": "sha256-Bn5QI5DFxNPUgcNXAfRKqJnsTFGl2cSZte9Xf9G+d7A=",
       "url": "_framework\/Howler.Blazor.dll"
     },
     {
-      "hash": "sha256-SQiwIJE1O5rGCqfytyTGohNeE\/qzq78\/YTCB7UnknjU=",
+      "hash": "sha256-rmVkDwitMnmZvJddUorH2OCargo1PQBdtNZ+By5\/sbg=",
       "url": "_framework\/Metronome.WASM.dll"
     },
     {
@@ -121,7 +125,7 @@
       "url": "_framework\/Microsoft.Extensions.Primitives.dll"
     },
     {
-      "hash": "sha256-aDKHivaIH6\/eUy057xdPoOKUPjgZiKtTvjA4RLEAgog=",
+      "hash": "sha256-kmBxus89BTZwio6bPRY6OgioLfNQuYPg3Jp\/NVgOncg=",
       "url": "_framework\/Microsoft.JSInterop.dll"
     },
     {
@@ -209,7 +213,7 @@
       "url": "_framework\/System.ObjectModel.dll"
     },
     {
-      "hash": "sha256-jV42DytpmXej9MfWFgVeS8t3pyFhNt8OEtxV5dlM6vs=",
+      "hash": "sha256-bNm0qijH8s0Ih28ewsmW7Q+9gfvtgwyR4L02yb0pOpU=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -225,7 +229,7 @@
       "url": "_framework\/System.Runtime.CompilerServices.Unsafe.dll"
     },
     {
-      "hash": "sha256-eXi4uEkti4Dwl7Z0NQTI76rIVpZ\/t\/xAQc8WxDGYrw4=",
+      "hash": "sha256-PsR6gXaTlZUD9ZBFgQMNhSHp2zimBaz4sqOdKksWmUA=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -245,7 +249,7 @@
       "url": "_framework\/System.Text.Json.dll"
     },
     {
-      "hash": "sha256-ezYp8NKgd4VNDHo3PiTYB1o1W4lOZ+PhW\/\/q8s\/QGZA=",
+      "hash": "sha256-O4SrKWS+LujObibt6qIvryiLYT1aQzsk1UjUi2NvK\/I=",
       "url": "_framework\/System.Text.RegularExpressions.dll"
     },
     {
@@ -269,5 +273,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "m+Uy3u14"
+  "version": "fdAjGHTL"
 };
