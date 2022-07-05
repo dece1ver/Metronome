@@ -75,7 +75,7 @@
         while (Running)
         {
             SoundIds.Add(await Howl.Play("resources/1.mp3"));
-            await localStorage.SetItemAsync(nameof(SavedTempos), SavedTempos);
+            _ = localStorage.SetItemAsync(nameof(SavedTempos), SavedTempos);
             await Task.Delay(Convert.ToInt32(60 / (double)Tempo * 1000));
         }
     }
